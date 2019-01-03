@@ -17,7 +17,7 @@ RUN apk add --no-cache --virtual .build-deps \
       mariadb-client && \
     pecl install imagick-beta && \
     docker-php-ext-install intl pdo_mysql zip && \
-    docker-php-ext-enable imagick && \
+    docker-php-ext-enable imagick opcache && \
     apk del .build-deps
 
 # Add custom PHP settings
