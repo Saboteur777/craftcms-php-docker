@@ -20,7 +20,7 @@ RUN apk add shadow && usermod -u 1000 www-data && groupmod -g 1000 www-data
 This will change the UID and GID of `www-data` user (which is the default one to run PHP) to 1000:1000. 
 
 ### Add custom PHP settings
-You can easily add new PHP settings to the image. Just place your `.conf` file(s) in e.g. the `.docker/php` folder, and add it: 
+You can easily add new PHP settings to the image. Just place your `.ini` file(s) in e.g. the `.docker/php` folder, and add it: 
 
 ```
 FROM: webmenedzser/craftcms-php
