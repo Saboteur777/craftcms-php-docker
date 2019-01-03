@@ -11,7 +11,7 @@ You can change which user should run PHP - just build your image by extending th
 
 **Dockerfile**
 ```
-FROM: webmenedzser/craftcms-php
+FROM: webmenedzser/craftcms-php:latest
 
 [...]
 RUN apk add shadow && usermod -u 1000 www-data && groupmod -g 1000 www-data
@@ -25,7 +25,7 @@ You can easily add new PHP settings to the image. Just place your `.ini` file in
 
 **Dockerfile**
 ```
-FROM: webmenedzser/craftcms-php
+FROM: webmenedzser/craftcms-php:latest
 
 [...]
 COPY .docker/php/settings-override.ini /usr/local/etc/php/conf.d/
