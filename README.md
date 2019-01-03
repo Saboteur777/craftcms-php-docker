@@ -31,3 +31,9 @@ FROM: webmenedzser/craftcms-php:latest
 COPY .docker/php/settings-override.ini /usr/local/etc/php/conf.d/
 [...]
 ```
+Opcache is enabled by default, so if you want to disable it (for local dev) you can do it with the method mentioned above: 
+
+**disable-opcache.ini**
+```
+opcache.enable = 0;
+```
