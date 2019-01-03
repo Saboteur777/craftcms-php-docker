@@ -28,6 +28,6 @@ You can easily add new PHP settings to the image. Just place your `.ini` file(s)
 FROM: webmenedzser/craftcms-php
 
 [...]
-ADD .docker/php/php-settings.ini /usr/local/etc/php/conf.d/
+COPY .docker/php/settings-override.ini /usr/local/etc/php/conf.d/
 [...]
 ```
