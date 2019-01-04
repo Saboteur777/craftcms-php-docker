@@ -2,6 +2,8 @@
 
 ![Docker Pull count](https://img.shields.io/docker/pulls/webmenedzser/craftcms-php.svg?style=popout)
 ![Docker Star count](https://img.shields.io/docker/stars/webmenedzser/craftcms-php.svg?style=popout)
+![Docker Build mode](https://img.shields.io/docker/automated/webmenedzser/craftcms-php.svg?style=popout)
+![Docker Build status](https://img.shields.io/docker/build/webmenedzser/craftcms-php.svg?style=popout)
 
 **This Docker image aims to be as simple as possible to run Craft CMS - if you have special dependencies, define this image as a base in your Dockerfile (FROM: webmenedzser/craftcms-php:latest) and extend it as you like.**
 
