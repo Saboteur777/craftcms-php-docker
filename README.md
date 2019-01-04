@@ -1,5 +1,7 @@
 # craftcms-php-docker
 
+![Docker Pull count](https://img.shields.io/docker/pulls/webmenedzser/craftcms-php.svg?style=popout)
+
 **This Docker image aims to be as simple as possible to run Craft CMS - if you have special dependencies, define this image as a base in your Dockerfile (FROM: webmenedzser/craftcms-php:latest) and extend it as you like.**
 
 The image will be based on the php:fpm-alpine image, which ships the latest stable PHP.
