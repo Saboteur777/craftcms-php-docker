@@ -9,7 +9,7 @@
 
 The image will be based on the php:fpm-alpine image, which ships the latest stable PHP.
 
-Current PHP version is **7.3.0**
+Current PHP version is **7.3.1**
 
 ### Change user and group of PHP
 You can change which user should run PHP - just build your image by extending this one, e.g.: 
