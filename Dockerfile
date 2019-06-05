@@ -8,6 +8,7 @@ RUN apk add --no-cache --virtual .build-deps \
       shadow \
       autoconf \
       g++ \
+      libpng-dev \
       make && \
     apk add --no-cache \
       imagemagick-dev \
@@ -16,7 +17,7 @@ RUN apk add --no-cache --virtual .build-deps \
       libzip-dev \
       mariadb-client && \
     pecl install imagick-beta && \
-    docker-php-ext-install intl pdo_mysql zip && \
+    docker-php-ext-install gd intl pdo_mysql soap zip && \
     docker-php-ext-enable imagick opcache && \
     apk del .build-deps
 
