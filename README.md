@@ -11,7 +11,14 @@
 
 The image will be based on the php:fpm-alpine image, which ships the latest stable PHP.
 
-Current PHP version is **7.3.2**
+Current PHP version is **7.3.6**
+
+### Pre-installed Composer in the image
+Composer is preinstalled, so you could use the following command to run it (in case the service, which is based on this image, is called `php` in your `docker-compose.yml`): 
+
+```
+docker-compose exec php composer <COMMAND>
+```
 
 ### Change user and group of PHP
 You can change which user should run PHP - just build your image by extending this one, e.g.:
