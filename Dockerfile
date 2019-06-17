@@ -11,6 +11,7 @@ RUN apk add --no-cache --virtual .build-deps \
       libpng-dev \
       make && \
     apk add --no-cache \
+      composer \
       imagemagick-dev \
       imagemagick \
       icu-dev \
