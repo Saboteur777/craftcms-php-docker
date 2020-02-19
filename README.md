@@ -11,7 +11,7 @@
 
 The image will be based on the php:fpm-alpine image, which ships the latest stable PHP.
 
-Current PHP version is **7.3.6**
+Current PHP version is **7.3.11**
 
 ### Pre-installed Composer in the image
 Composer is preinstalled, so you could use the following command to run it (in case the service, which is based on this image, is called `php` in your `docker-compose.yml`): 
