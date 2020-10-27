@@ -20,7 +20,8 @@ RUN apk add --no-cache --virtual .build-deps \
     pecl install imagick-beta && \
     docker-php-ext-install gd intl pdo_mysql soap zip && \
     docker-php-ext-enable imagick opcache && \
-    apk del .build-deps
+    apk del .build-deps && \ 
+    composer self-update --2
 
 # Fixes: https://github.com/nystudio107/craft-retour/issues/57
 # Related: https://github.com/docker-library/php/issues/240, 
