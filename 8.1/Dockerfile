@@ -47,6 +47,7 @@ RUN apk add --no-cache \
       freetype-dev \
       g++ \
       gifsicle \
+      git \
       gmp-dev \
       icu-dev \
       imagemagick \
