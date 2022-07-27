@@ -2,16 +2,13 @@
 
 ![Docker Build status](https://img.shields.io/docker/cloud/build/webmenedzser/craftcms-php.svg)
 ![Docker Build mode](https://img.shields.io/docker/cloud/automated/webmenedzser/craftcms-php.svg)
-[![Docker layers count](https://images.microbadger.com/badges/image/webmenedzser/craftcms-php.svg)](https://microbadger.com/images/webmenedzser/craftcms-php)
 ![Docker Pull count](https://badgen.net/docker/pulls/webmenedzser/craftcms-php)
 ![Last commit](https://badgen.net/github/last-commit/Saboteur777/craftcms-php-docker)
 ![Keybase.io PGP](https://badgen.net/keybase/pgp/Saboteur777)
 
 **This Docker image aims to be as simple as possible to run Craft CMS - if you have special dependencies, define this image as a base in your Dockerfile (FROM: webmenedzser/craftcms-php:latest) and extend it as you like.**
 
-The image will be based on the php:fpm-alpine image, which ships the latest stable PHP.
-
-Current PHP version is **7.3.11**
+The image is based on the php:fpm-alpine image.
 
 ### Pre-installed Composer in the image
 Composer is preinstalled, so you could use the following command to run it (in case the service, which is based on this image, is called `php` in your `docker-compose.yml`): 
@@ -57,12 +54,8 @@ opcache.enable = 0;
 **docker-compose.yml**
 
 ```
-volumes:
-  database_volume: {}
-
 version: '3.6'
 services:
-
   web:
     image: webmenedzser/craftcms-nginx:latest
     volumes:
@@ -77,6 +70,9 @@ services:
     image: mariadb:latest
     volumes:
      - database_volume:/var/lib/mysql
+
+volumes:
+  database_volume: {}
 ```
 
 Sister image: [craftcms-nginx](https://github.com/Saboteur777/craftcms-nginx-docker)
