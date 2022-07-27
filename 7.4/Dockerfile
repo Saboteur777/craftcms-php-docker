@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-alpine
+FROM php:7.4-fpm-alpine3.12
 MAINTAINER Otto Radics <hello@ottoradics.com>
 
 # From: https://github.com/craftcms/docker/blob/main/8.1/Dockerfile
@@ -52,7 +52,6 @@ RUN apk add --no-cache \
       imagemagick \
       imagemagick-dev \
       jpegoptim \
-      libavif-dev \
       libjpeg-turbo-dev \
       libpng-dev \
       libwebp-dev \
@@ -64,6 +63,7 @@ RUN apk add --no-cache \
       mariadb-client \
       optipng \
       shadow && \
+    composer self-update --2 && \
     pecl install imagick && \
     docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp && \
     docker-php-ext-install gd gmp intl pdo_mysql soap zip && \
