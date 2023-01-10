@@ -49,6 +49,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 
 RUN apk add --no-cache \
       autoconf \
+      exiftool \
       freetype-dev \
       g++ \
       gifsicle \
@@ -72,5 +73,5 @@ RUN apk add --no-cache \
       shadow && \
     pecl install imagick && \
     docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-avif && \
-    docker-php-ext-install bcmath gd gmp intl pdo_mysql soap zip && \
+    docker-php-ext-install bcmath gd gmp exif intl pdo_mysql soap zip && \
     docker-php-ext-enable imagick opcache
