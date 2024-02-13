@@ -55,11 +55,15 @@ RUN apk add --no-cache \
       gifsicle \
       git \
       gmp-dev \
+      icu \
+      icu-data-full \
       icu-dev \
       imagemagick \
       imagemagick-dev \
       jpegoptim \
+      jpeg \
       libavif-dev \
+      libintl \
       libjpeg-turbo-dev \
       libpng-dev \
       libwebp-dev \
@@ -69,9 +73,10 @@ RUN apk add --no-cache \
       libzip-dev \
       make \
       mariadb-client \
+      musl-locales musl-locales-lang \
       optipng \
       shadow && \
     pecl install imagick && \
     docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-avif && \
-    docker-php-ext-install bcmath gd gmp exif intl pdo_mysql soap zip && \
+    docker-php-ext-install -j$(nproc) bcmath gd gmp exif intl pcntl pdo_mysql soap zip && \
     docker-php-ext-enable imagick opcache
