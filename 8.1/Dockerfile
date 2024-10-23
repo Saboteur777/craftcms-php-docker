@@ -75,7 +75,8 @@ RUN apk add --no-cache \
       mariadb-client \
       musl-locales musl-locales-lang \
       optipng \
-      shadow && \
+      shadow \
+      tzdata && \
     pecl install imagick && \
     docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-avif && \
     docker-php-ext-install -j$(nproc) bcmath gd gmp exif intl pcntl pdo_mysql soap zip && \

@@ -68,7 +68,8 @@ RUN apk add --no-cache \
       make \
       mariadb-client \
       optipng \
-      shadow && \
+      shadow \
+      tzdata && \
     composer self-update --2 && \
     pecl install imagick && \
     docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp && \
