@@ -73,6 +73,7 @@ RUN apk add --no-cache \
       libzip-dev \
       make \
       mariadb-client \
+      mariadb-connector-c \
       musl-locales musl-locales-lang \
       optipng \
       shadow \

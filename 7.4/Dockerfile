@@ -67,6 +67,7 @@ RUN apk add --no-cache \
       libzip-dev \
       make \
       mariadb-client \
+      mariadb-connector-c \
       optipng \
       shadow \
       tzdata && \
