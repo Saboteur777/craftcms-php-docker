@@ -1,7 +1,6 @@
 # craftcms-php-docker
 
-![Docker Build status](https://img.shields.io/docker/cloud/build/webmenedzser/craftcms-php.svg)
-![Docker Build mode](https://img.shields.io/docker/cloud/automated/webmenedzser/craftcms-php.svg)
+[![Docker images](https://github.com/Saboteur777/craftcms-php-docker/actions/workflows/docker-images.yml/badge.svg)](https://github.com/Saboteur777/craftcms-php-docker/actions/workflows/docker-images.yml)
 ![Docker Pull count](https://badgen.net/docker/pulls/webmenedzser/craftcms-php)
 ![Last commit](https://badgen.net/github/last-commit/Saboteur777/craftcms-php-docker)
 ![Keybase.io PGP](https://badgen.net/keybase/pgp/Saboteur777)
@@ -10,8 +9,28 @@
 
 The image is based on the php:fpm-alpine image.
 
+### Automatic builds
+
+GitHub Actions rebuilds the `7.4`, `8.1`, `8.2` and `8.5` tags daily at 03:17 UTC and after changes to their build files on `master`. You can also start a build from **Actions > Docker images > Run workflow**. Pull requests build and check the images without publishing them.
+
+Each build pulls the current base images and runs without Docker's layer cache, so it also refreshes packages installed during the build. Updates to an existing base-image tag are picked up by the next daily build. Switching to another PHP version or changing a pinned Alpine version requires a Dockerfile change.
+
+The workflow checks PHP, Composer and the FPM configuration before pushing each `linux/amd64` image to `webmenedzser/craftcms-php`. Each PHP version runs independently, so a failed build does not stop the others. The workflow only updates the four version tags; it does not assign `latest`.
+
+To enable publishing, add these repository secrets under **Settings > Secrets and variables > Actions**:
+
+- `DOCKERHUB_USERNAME`: the Docker Hub account with push access to `webmenedzser/craftcms-php`.
+- `DOCKERHUB_TOKEN`: a Docker Hub access token with write permission for that repository.
+
+The workflow must be on the default branch (`master`) for the schedule to run. Disable any Docker Hub autobuild rules that publish the same tags once this workflow is in use.
+
+[GitHub may delay scheduled runs and disables them in public repositories after 60 days without repository activity](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule). Re-enable the workflow in the Actions tab if this happens. A daily rebuild can only include updates that upstream still provides for the chosen PHP and Alpine versions.
+
 ### Pre-installed Composer in the image
-Composer is preinstalled, so you could use the following command to run it (in case the service, which is based on this image, is called `php` in your `docker-compose.yml`): 
+
+Composer 2 is copied from `composer/composer:2-bin`, as described in the [Composer Docker documentation](https://getcomposer.org/doc/00-intro.md#docker-image). The daily build pulls its current version, so there is no installer checksum to update manually.
+
+You can run it with the following command (if the service based on this image is called `php` in your `docker-compose.yml`):
 
 ```
 docker-compose exec php composer <COMMAND>

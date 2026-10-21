@@ -41,11 +41,7 @@ RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/co
 # Add custom PHP settings
 ADD php-settings.ini /usr/local/etc/php/conf.d/
 
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-    php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
-    php composer-setup.php && \
-    php -r "unlink('composer-setup.php');" && \
-    mv composer.phar /usr/local/bin/composer
+COPY --from=composer/composer:2-bin /composer /usr/local/bin/composer
 
 RUN apk add --no-cache \
       autoconf \
@@ -71,7 +67,6 @@ RUN apk add --no-cache \
       optipng \
       shadow \
       tzdata && \
-    composer self-update --2 && \
     pecl install imagick && \
     docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp && \
     docker-php-ext-install gd gmp intl pdo_mysql soap zip && \
