@@ -15,7 +15,9 @@ GitHub Actions rebuilds the `7.4`, `8.1`, `8.2` and `8.5` tags daily at 03:17 UT
 
 Each build pulls the current base images and runs without Docker's layer cache, so it also refreshes packages installed during the build. Updates to an existing base-image tag are picked up by the next daily build. Switching to another PHP version or changing a pinned Alpine version requires a Dockerfile change.
 
-The workflow checks PHP, Composer and the FPM configuration before pushing each `linux/amd64` image to `webmenedzser/craftcms-php`. Each PHP version runs independently, so a failed build does not stop the others. The workflow only updates the four version tags; it does not assign `latest`.
+Imagick is built from the official [3.8.1 GitHub release](https://github.com/Imagick/imagick/releases/tag/3.8.1), with download retries, so builds do not depend on PECL's download server. Its version is pinned by `IMAGICK_VERSION` in each Dockerfile; daily rebuilds do not upgrade it automatically.
+
+The workflow checks PHP, Composer, the FPM configuration and PNG generation through Imagick before pushing each `linux/amd64` image to `webmenedzser/craftcms-php`. Each PHP version runs independently, so a failed build does not stop the others. The workflow only updates the four version tags; it does not assign `latest`.
 
 To enable publishing, add these repository secrets under **Settings > Secrets and variables > Actions**:
 

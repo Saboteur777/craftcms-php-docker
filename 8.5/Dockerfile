@@ -43,6 +43,9 @@ ADD php-settings.ini /usr/local/etc/php/conf.d/
 
 COPY --from=composer/composer:2-bin /composer /usr/local/bin/composer
 
+# GitHub sources keep a version placeholder that PECL normally replaces.
+ARG IMAGICK_VERSION=3.8.1
+
 RUN apk add --no-cache \
       autoconf \
       exiftool \
@@ -74,7 +77,12 @@ RUN apk add --no-cache \
       optipng \
       shadow \
       tzdata && \
-    pecl install imagick && \
+    curl -fsSL --retry 5 --retry-delay 2 --connect-timeout 15 --max-time 120 \
+      "https://github.com/Imagick/imagick/archive/refs/tags/${IMAGICK_VERSION}.tar.gz" \
+      -o /tmp/imagick.tar.gz && \
+    mkdir -p /tmp/imagick && \
+    tar -xzf /tmp/imagick.tar.gz -C /tmp/imagick --strip-components=1 && \
+    sed -i "s/@PACKAGE_VERSION@/${IMAGICK_VERSION}/g" /tmp/imagick/php_imagick.h && \
     docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-avif && \
-    docker-php-ext-install -j$(nproc) bcmath gd gmp exif intl pcntl pdo_mysql soap zip && \
-    docker-php-ext-enable imagick
+    docker-php-ext-install -j$(nproc) /tmp/imagick bcmath gd gmp exif intl pcntl pdo_mysql soap zip && \
+    rm -rf /tmp/imagick /tmp/imagick.tar.gz
